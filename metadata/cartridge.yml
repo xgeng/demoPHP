@@ -40,6 +40,12 @@ Publishes:
 #     Type: "ENV:*"
 #     Required: false
 Endpoints:
+  - Private-IP-Name:   SSL_IP
+    Private-Port-Name: SSL_PORT
+    Private-Port:      8443
+    Public-Port-Name:  SSL_PROXY_PORT
+    Options:           { "ssl_to_gear": true }
+    
   - Private-IP-Name:   EXAMPLE_IP1
     Private-Port-Name: EXAMPLE_PORT1
     Private-Port:      8080
