@@ -26,7 +26,7 @@ Compatible-Versions:
 - 0.0.20
 - 0.0.21
 - 0.0.22
-Cartridge-Vendor: redhat
+Cartridge-Vendor: php
 Categories:
 - service
 - php
