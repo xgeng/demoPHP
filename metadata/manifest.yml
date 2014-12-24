@@ -1,68 +1,61 @@
----
-Name: php
-Cartridge-Short-Name: PHP
-Display-Name: PHP 5.4
-Description: PHP is a general-purpose server-side scripting language originally designed
-  for Web development to produce dynamic Web pages. Popular development frameworks
-  include CakePHP, Zend, Symfony, and Code Igniter.
-Version: '5.4'
-Provides:
-- php-5.4
-- php
-Versions:
-- '5.4'
-- '5.3'
-Version-Overrides:
-  '5.3':
-    Display-Name: PHP 5.3
-    Provides:
-    - php-5.3
-    - php
-License: The PHP License, version 3.0
-License-Url: http://www.php.net/license/3_0.txt
-Vendor: php.net
-Cartridge-Version: 0.0.23
-Compatible-Versions:
-- 0.0.20
-- 0.0.21
-- 0.0.22
-Cartridge-Vendor: php
+
+Name: mongodb
+Namespace: MONGODB
+Cartridge-Short-Name: MONGODB
+Architecture: noarch
+Display-Name: MongoDB NoSQL Database 2.2 
+Description: "MongoDB is a scalable, high-performance, open source NoSQL database."
+Version: '2.2'
+Versions: [2.2]
+Cartridge-Version: 0.2.0
+Cartridge-Vendor: wsuntest
+License: ASL 2.0
+Vendor: 10gen
 Categories:
-- service
-- php
-- web_framework
-Website: http://www.php.net
+  - service
+  - database
+  - nosql
+  - embedded
+Website: http://www.10gen.com
 Help-Topics:
-  Developer Center: https://www.openshift.com/developers
+  - "Building with MongoDB" : https://www.openshift.com/developers/mongodb
+Cart-Data:
+  - Key: "username"
+    Type: cart_data
+    Description: "Root user on mongo database"
+  - Key: "password"
+    Type: cart_data
+    Description: "Password for root user on mongo database"
+  - Key: database_name
+    Type: cart_data
+    Description: "Mongo DB name"
+  - Key: connection_url
+    Type: cart_data
+    Description: "Mongo DB connection URL"
+Suggests:
+  - 10gen-mms-agent-0.1
+  - rockmongo
+Provides:
+  - mongodb-2.2
+  - "mongodb"
+  - "mongodb(version) = 2.2.0"
+  - mongodb-basic-mode
 Publishes:
-  get-php-ini:
-    Type: FILESYSTEM:php-ini
-Subscribes:
-  set-env:
-    Type: ENV:*
-    Required: false
-  set-doc-url:
-    Type: STRING:urlpath
-    Required: false
+  publish-nosql-db-connection-info:
+    Type: "ENV:NET_TCP:nosqldb:connection-info"
 Scaling:
   Min: 1
-  Max: -1
+  Max: 1
 Endpoints:
-- Private-IP-Name: IP
-  Private-Port-Name: PORT
-  Private-Port: 8080
-  Public-Port-Name: PROXY_PORT
-  Protocols:
-  - http
-  - ws
-  Options:
-    primary: true
-  Mappings:
-  - Frontend: ''
-    Backend: ''
-    Options:
-      websocket: true
-  - Frontend: /health
-    Backend: ''
-    Options:
-      health: true
+  - Private-IP-Name:   DB_HOST
+    Private-Port-Name: DB_PORT
+    Private-Port:      27017
+    Public-Port-Name:  DB_PROXY_PORT
+#Source-Url: http://github.com/xgeng/mongov2cart.git
+#Source-Url: https://github.com/xgeng/mongov2cart/raw/master/mongov2cart.tar.gz
+#Source-Url: https://github.com/xgeng/mongov2cart/raw/master/mongov2cart.tar
+#Source-Url: https://github.com/xgeng/mongov2cart/raw/master/mongov2cart.zip
+Source-Url: git://github.com/xgeng/mongov2cart.git
+#Source-Md5: ae220f2a0b616e93079560bc86d84fdc
+Source-Url: file:///root/mongov2cart/mongov2cart.tar.gz
+#Source-Url: http://baidu.com
